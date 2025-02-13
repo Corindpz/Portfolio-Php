@@ -36,17 +36,17 @@ switch ($request) {
         }
         break;
 
-    case '/dashboard' :
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /projetb2/index.html');
-            exit;
-        }
-        require __DIR__ . '/../src/views/user/dashboard.php';
-        break;
-
+    case '/dashboard':
+            require __DIR__ . '/../src/controllers/ProjectController.php';
+            ProjectController::dashboard();
+            break;
+        
     default:
-        http_response_code(404);
-        echo "Page non trouvée";
-        break;
+            header('Location: /dashboard');
+            break;
+        
+
+    
+        
 }
 ?>
