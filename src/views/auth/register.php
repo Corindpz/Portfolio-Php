@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/projetb2/public/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="/public/assets/css/style.css">
 
 <div class="container">
     <h1>Inscription </h1>

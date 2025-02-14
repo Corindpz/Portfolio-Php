@@ -4,7 +4,7 @@ require_once __DIR__ . '/../models/User.php';
 class AuthController {
     public static function register() {
         if (isset($_SESSION['user_id'])) {
-            header('Location: /projetb2/dashboard');
+            header('Location: /dashboard');
             exit;
         }
 
@@ -16,9 +16,9 @@ class AuthController {
             ];
 
             $user = new User();
-            try {
+            try {   
                 $user->register($data);
-                header('Location: /projetb2/index.html');
+                header('Location: /index.php');
                 exit;
             } catch (Exception $e) {
                 echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
@@ -28,9 +28,22 @@ class AuthController {
         }
     }
 
+    public static function logout() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+        session_unset();
+        
+        session_destroy();
+        
+        header('Location: /projetb2/login');
+        exit;
+    }
+
     public static function login() {
         if (isset($_SESSION['user_id'])) {
-            header('Location: /projetb2/dashboard');
+            header('Location: /dashboard');
             exit;
         }
 
@@ -44,7 +57,7 @@ class AuthController {
             $loginSuccess = $user->login($data);
 
             if ($loginSuccess) {
-                header('Location: /projetb2/dashboard');
+                header('Location: /dashboard');
                 exit;
             } else {
                 echo "<p style='color:red;'>Email ou mot de passe incorrect.</p>";

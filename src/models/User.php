@@ -24,6 +24,7 @@ class User {
 
         if ($user && password_verify($data['password'], $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_role'] = $user['role'];
             return true;
         }
         return false;

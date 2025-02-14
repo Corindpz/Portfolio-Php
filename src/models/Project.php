@@ -2,6 +2,19 @@
 require_once __DIR__ . '/../../config/database.php';
 
 class Project {
+
+    public function deleteProject($projectId) {
+        global $pdo;
+        $stmt = $pdo->prepare("DELETE FROM projects WHERE id = ?");
+        $stmt->execute([$projectId]);
+    }
+
+    public function deleteProjectSkills($projectId) {
+        global $pdo;
+        $stmt = $pdo->prepare("DELETE FROM project_skills WHERE project_id = ?");
+        $stmt->execute([$projectId]);
+    }
+    
     public function createProject($data) {
         global $pdo;
         $stmt = $pdo->prepare("INSERT INTO projects (user_id, title, description, image) VALUES (?, ?, ?, ?)");
@@ -34,5 +47,12 @@ class Project {
         ");
         $stmt->execute([$projectId]);
         return $stmt->fetchAll();
+    }
+
+    public function getProjectById($projectId) {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT * FROM projects WHERE id = ?");
+        $stmt->execute([$projectId]);
+        return $stmt->fetch();
     }
 }

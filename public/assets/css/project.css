@@ -1,0 +1,84 @@
+.project-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.project-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.btn-back {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+}
+
+.project-details {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.project-image img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-description {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-description h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.project-description p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.project-skills {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-skills h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.project-skills ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.project-skills li {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 8px;
+}
