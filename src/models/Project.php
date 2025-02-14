@@ -4,8 +4,8 @@ require_once __DIR__ . '/../../config/database.php';
 class Project {
     public function createProject($data) {
         global $pdo;
-        $stmt = $pdo->prepare("INSERT INTO projects (user_id, title, description) VALUES (?, ?, ?)");
-        $stmt->execute([$data['user_id'], $data['title'], $data['description']]);
+        $stmt = $pdo->prepare("INSERT INTO projects (user_id, title, description, image) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$data['user_id'], $data['title'], $data['description'], $data['image']]);
         return $pdo->lastInsertId();
     }
 
@@ -23,6 +23,7 @@ class Project {
         $stmt->execute([$userId]);
         return $stmt->fetchAll();
     }
+    
 
     public function getProjectSkills($projectId) {
         global $pdo;
@@ -35,4 +36,3 @@ class Project {
         return $stmt->fetchAll();
     }
 }
-?>

@@ -132,3 +132,20 @@ body {
         margin-bottom: 20px;
     }
 }
+
+.project-card img.project-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.project-cover {
+    width: 100%;         /* L'image prend toute la largeur du conteneur */
+    height: 150px;       /* Hauteur fixe pour un rendu uniforme */
+    object-fit: cover;   /* Ajuste l'image pour qu'elle remplisse sans déformation */
+    border-radius: 5px;  /* Ajoute des coins arrondis */
+    margin-bottom: 10px; /* Espace entre l'image et le titre */
+    display: block;
+}
+

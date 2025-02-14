@@ -7,22 +7,44 @@ class ProjectController {
         $projects = $project->getProjectsByUser($_SESSION['user_id']);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = htmlspecialchars($_POST['title']);
+            $description = htmlspecialchars($_POST['description']);
+            $skills = $_POST['skills'] ?? [];
+            $imagePath = null;
+
+            // Gérer l'upload d'image
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = __DIR__ . '/../../public/uploads/';
+                $fileName = uniqid() . '-' . basename($_FILES['image']['name']);
+                $uploadFilePath = $uploadDir . $fileName;
+
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFilePath)) {
+                    $imagePath = '/public/uploads/' . $fileName;
+                } else {
+                    $_SESSION['error'] = "Échec du téléchargement de l'image.";
+                }
+            }
+
+            // Créer le projet
             $projectData = [
                 'user_id' => $_SESSION['user_id'],
-                'title' => $_POST['title'],
-                'description' => $_POST['description']
+                'title' => $title,
+                'description' => $description,
+                'image' => $imagePath
             ];
 
-            $skills = $_POST['skills'] ?? []; // Tableau d'IDs de compétences
             $projectId = $project->createProject($projectData);
-            $project->attachSkills($projectId, $skills);
 
-            // Recharge les projets après ajout
-            $projects = $project->getProjectsByUser($_SESSION['user_id']);
+            // Associer les compétences
+            if ($skills) {
+                $project->attachSkills($projectId, $skills);
+            }
+
+            $_SESSION['success'] = "Projet créé avec succès !";
+            header('Location: /projetb2/dashboard');
+            exit;
         }
 
         require __DIR__ . '/../views/user/dashboard.php';
     }
 }
-
-?>

@@ -29,3 +29,6 @@ CREATE TABLE project_skills (
     FOREIGN KEY (project_id) REFERENCES projects(id),
     FOREIGN KEY (skill_id) REFERENCES skills(id)
 );
+
+ALTER TABLE projects ADD COLUMN image VARCHAR(255) NULL AFTER description;
+
